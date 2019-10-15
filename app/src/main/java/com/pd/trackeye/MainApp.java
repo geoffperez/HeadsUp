@@ -2,40 +2,45 @@ package com.pd.trackeye;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
-import android.os.CountDownTimer;   // Import for timer - Not used YET!
+import android.media.MediaPlayer;
+import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.media.MediaPlayer;
+
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.MultiProcessor;
 import com.google.android.gms.vision.Tracker;
 import com.google.android.gms.vision.face.Face;
 import com.google.android.gms.vision.face.FaceDetector;
+
 import java.io.IOException;
+import java.util.Date;
+import java.util.Timer;
 
-public class MainActivity extends AppCompatActivity {
+public class MainApp extends AppCompatActivity {
 
-    private static final String TAG = "MainActivity";
     EditText textView;                  // shows eye tracking status / message to user
     MediaPlayer mp;                     // declare media player
     CameraSource cameraSource;          // declare cameraSource
     boolean startWasPressed = false;    // used to check if "start" is pressed
     boolean closeWasPressed = false;    // used to check if "close" is pressed
     long timeLeft;
+    private Timer timeNow;
+    private Timer timeThen;
+    private Timer timeDiff;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);                             // display main view
         mp = MediaPlayer.create(this,R.raw.alarm);                  // create media player
-        final Button startButton = (Button) findViewById(R.id.startButton); // refers to start button
-        final Button closeButton = (Button) findViewById(R.id.closeButton); // refers to close button
+        final Button startButton = findViewById(R.id.startButton); // refers to start button
+        final Button closeButton = findViewById(R.id.closeButton); // refers to close button
 
         // Listen for Start button to be pressed
         startButton.setOnClickListener(new View.OnClickListener() {
@@ -68,9 +73,11 @@ public class MainActivity extends AppCompatActivity {
     private class EyesTracker extends Tracker<Face> {
 
         // Thresholds define the threshold of a face being detected or not
-        private final float THRESHOLD = 0.75f; // original value = 0.75f;
-        private final float TURNING_THRESHOLD = .75f;
-        private EyesTracker() { /***************/ }//end EyesTracker
+        private final float THRESHOLD; // original value = 0.75f;
+        private final float TURNING_THRESHOLD;
+        private EyesTracker() { /***************/THRESHOLD = 0.75f;
+            TURNING_THRESHOLD = .75f;
+        }//end EyesTracker
 
         @Override
         public void onUpdate(Detector.Detections<Face> detections, Face face) {
@@ -98,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
         public void onMissing(Detector.Detections<Face> detections) {
             super.onMissing(detections);
             showStatus("Face Not Detected yet!");
-            /** Possibly play alarm here? **/
+            /* Possibly play alarm here? **/
         }//end onMissing
 
         @Override
@@ -111,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
 
     }//end EyeTracker class
 
-    private class FaceTrackerFactory implements MultiProcessor.Factory<Face> {
+    class FaceTrackerFactory implements MultiProcessor.Factory<Face> {
 
         // Uncertain if actually used
         private FaceTrackerFactory() { /***************/ }
@@ -207,4 +214,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }//end showStatus
 
-}//end class MainActivity
+    public Timer timeSinceLastUpdate(Timer timeNow, Timer timeThen) {
+
+        this.timeNow = timeNow;
+        this.timeThen = timeThen;
+        
+        return timeDiff;
+    }
+
+}//end class MainApp
