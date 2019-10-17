@@ -10,6 +10,11 @@ Made Using Google Vision API.
 </p>
 
 
+<p align="left">
+	<img src="https://i.imgur.com/yReGjWb.png" width="249" height ="210" title="User Interface"/>
+</p>
+<p align="left">
+
 ## User Interface
 ![](https://i.imgur.com/yReGjWb.png)
 
