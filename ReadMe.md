@@ -14,7 +14,7 @@ Made Using Google Vision API.
 ![](https://i.imgur.com/yReGjWb.png)
 
 ## Minimum Requirements
-![](https://i.imgur.com/qUFMHfh.png)
+![](https://i.imgur.com/qUFMHfh.png width="217" height="464")
 
 ## System Architecture
 ![](https://i.imgur.com/nIkpTw5.png)
