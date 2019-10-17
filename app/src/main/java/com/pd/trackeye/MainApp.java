@@ -2,43 +2,40 @@ package com.pd.trackeye;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
-import android.media.MediaPlayer;
-import android.os.Bundle;
+import android.os.CountDownTimer;   // Import for timer - Not used YET!
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
+import android.media.MediaPlayer;
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.MultiProcessor;
 import com.google.android.gms.vision.Tracker;
 import com.google.android.gms.vision.face.Face;
 import com.google.android.gms.vision.face.FaceDetector;
-
 import java.io.IOException;
-import java.util.Date;
-import java.util.Timer;
 
-public class MainApp extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "MainActivity";
     EditText textView;                  // shows eye tracking status / message to user
-    MediaPlayer mp;                     // declare media player
+    MediaPlayer mp;                     // declare media player (alarm)
+    MediaPlayer mpT;                    // declare media player (start ping)
     CameraSource cameraSource;          // declare cameraSource
     boolean startWasPressed = false;    // used to check if "start" is pressed
     boolean closeWasPressed = false;    // used to check if "close" is pressed
-    long timeLeft;
-    private Timer timeNow;
-    private Timer timeThen;
-    private Timer timeDiff;
+    long timeLeft;                      // used to track time left on countdown
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);                             // display main view
         mp = MediaPlayer.create(this,R.raw.alarm);                  // create media player
+        mpT = MediaPlayer.create(this,R.raw.pingone);                  // create media player
         final Button startButton = findViewById(R.id.startButton); // refers to start button
         final Button closeButton = findViewById(R.id.closeButton); // refers to close button
 
@@ -46,10 +43,11 @@ public class MainApp extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            textView.setVisibility(View.VISIBLE);       // show test once Started
-            startWasPressed = true;                     // trigger startWasPressed
-            startButton.setVisibility(View.INVISIBLE);  // hide Start button
-            closeButton.setVisibility(View.VISIBLE);    // show Close button
+                startWasPressed = true;                     // trigger startWasPressed
+                playPing();
+                textView.setVisibility(View.VISIBLE);       // show test once Started
+                startButton.setVisibility(View.INVISIBLE);  // hide Start button
+                closeButton.setVisibility(View.VISIBLE);    // show Close button
             }
         });
 
@@ -68,16 +66,18 @@ public class MainApp extends AppCompatActivity {
             textView = findViewById(R.id.textView);
             createCameraSource();
         }
+
     }//end onCreate
+
+    public void playPing() { mpT.start(); } //end playPing
 
     private class EyesTracker extends Tracker<Face> {
 
         // Thresholds define the threshold of a face being detected or not
-        private final float THRESHOLD; // original value = 0.75f;
-        private final float TURNING_THRESHOLD;
-        private EyesTracker() { /***************/THRESHOLD = 0.75f;
-            TURNING_THRESHOLD = .75f;
-        }//end EyesTracker
+        private final float THRESHOLD = 0.75f; // original value = 0.75f;
+        private final float TURNING_RIGHT_THRESHOLD = -45f;
+        private final float TURNING_LEFT_THRESHOLD = 45f;
+        private EyesTracker() { /***************/ }//end EyesTracker
 
         @Override
         public void onUpdate(Detector.Detections<Face> detections, Face face) {
@@ -85,17 +85,21 @@ public class MainApp extends AppCompatActivity {
 
                 // If eyes are determined to be open then update text
                 if (face.getIsLeftEyeOpenProbability() > THRESHOLD || face.getIsRightEyeOpenProbability() > THRESHOLD) {
-                    showStatus("Eyes Detected and open.");
+                    showStatus("Eyes Open.");
                     //pauseAlarm();
-
-                    // If face turned too far then notify
-                    if(face.getEulerZ() > TURNING_THRESHOLD){
-                        showStatus("Face turned away, Play Alert!");
-                        playAlarm();
-                    }
-
-                }else {
-                    showStatus("Eyes Detected and closed, Play Alert!");
+                }
+                if(face.getIsLeftEyeOpenProbability() < THRESHOLD || face.getIsRightEyeOpenProbability() < THRESHOLD){
+                    showStatus("Eyes Closed, Play Alert!");
+                    playAlarm();
+                }
+                if(face.getEulerY() < TURNING_RIGHT_THRESHOLD){
+                    //showStatus(Float.toString(face.getEulerY()));
+                    showStatus("Turned Right, Play Alert!");
+                    playAlarm();
+                }
+                if(face.getEulerY() > TURNING_LEFT_THRESHOLD){
+                    //showStatus(Float.toString(face.getEulerY()));
+                    showStatus("Turned Left, Play Alert!");
                     playAlarm();
                 }
             }//end if startWasPressed
@@ -105,7 +109,7 @@ public class MainApp extends AppCompatActivity {
         public void onMissing(Detector.Detections<Face> detections) {
             super.onMissing(detections);
             showStatus("Face Not Detected yet!");
-            /* Possibly play alarm here? **/
+            /** Possibly play alarm here? **/
         }//end onMissing
 
         @Override
@@ -118,7 +122,7 @@ public class MainApp extends AppCompatActivity {
 
     }//end EyeTracker class
 
-    class FaceTrackerFactory implements MultiProcessor.Factory<Face> {
+    private class FaceTrackerFactory implements MultiProcessor.Factory<Face> {
 
         // Uncertain if actually used
         private FaceTrackerFactory() { /***************/ }
@@ -136,7 +140,7 @@ public class MainApp extends AppCompatActivity {
         FaceDetector detector = new FaceDetector.Builder(this)
                 .setTrackingEnabled(true)
                 .setClassificationType(FaceDetector.ALL_CLASSIFICATIONS)
-                .setMode(FaceDetector.FAST_MODE)
+                .setMode(FaceDetector.ACCURATE_MODE) // original FAST_MODE
                 .build();
         detector.setProcessor(new MultiProcessor.Builder(new FaceTrackerFactory()).build());
 
@@ -197,7 +201,7 @@ public class MainApp extends AppCompatActivity {
     }//end onPause
 
     @Override
-    protected void onDestroy() { // Clean up when app closes
+    protected void onDestroy() { // Cleans up when app closes
         super.onDestroy();
         mp.stop();
         mp.release();
@@ -214,12 +218,4 @@ public class MainApp extends AppCompatActivity {
         });
     }//end showStatus
 
-    public Timer timeSinceLastUpdate(Timer timeNow, Timer timeThen) {
-
-        this.timeNow = timeNow;
-        this.timeThen = timeThen;
-        
-        return timeDiff;
-    }
-
-}//end class MainApp
+}//end class MainActivity
