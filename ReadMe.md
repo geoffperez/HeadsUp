@@ -9,16 +9,18 @@ A driver awareness application utilizing eye tracking and facial recognition.
 Made Using Google Vision API.
 </p>
 
-
+## User Interface
 <p align="left">
-	<img src="https://i.imgur.com/yReGjWb.png" width="299" height ="260" title="User Interface"/>
+	<img src="https://i.imgur.com/yReGjWb.png" width="299" height ="260"/>
 </p>
 <p align="left">
 
-## User Interface
-![](https://i.imgur.com/yReGjWb.png)
-
 ## Minimum Requirements
+<p align="left">
+	<img src="https://i.imgur.com/qUFMHfh.png" width="217" height="464"/>
+</p>
+<p align="left">
+
 ![](https://i.imgur.com/qUFMHfh.png width="217" height="464")
 
 ## System Architecture
