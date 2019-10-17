@@ -22,7 +22,8 @@ Made Using Google Vision API.
 <p align="left">
 
 ## System Architecture
-![](https://i.imgur.com/nIkpTw5.png)
-
-## Use Cases
-![](https://i.imgur.com/Zx6YTz9.png)
+<p align="left">
+	<img src="https://i.imgur.com/nIkpTw5.png" width="446" height="185"/>
+</p>
+<p align="left">
+	
