@@ -11,7 +11,7 @@ Made Using Google Vision API.
 
 
 <p align="left">
-	<img src="https://i.imgur.com/yReGjWb.png" width="249" height ="210" title="User Interface"/>
+	<img src="https://i.imgur.com/yReGjWb.png" width="299" height ="260" title="User Interface"/>
 </p>
 <p align="left">
 
