@@ -83,22 +83,25 @@ public class MainActivity extends AppCompatActivity {
         public void onUpdate(Detector.Detections<Face> detections, Face face) {
             if(startWasPressed){
 
-                // If eyes are determined to be open then update text
+                // If eyes are determined to be OPEN then update text
                 if (face.getIsLeftEyeOpenProbability() > THRESHOLD || face.getIsRightEyeOpenProbability() > THRESHOLD) {
                     showStatus("Eyes Open.");
                     //pauseAlarm();
                 }
+                // If left or right eye is CLOSED then update text and play alarm
                 if(face.getIsLeftEyeOpenProbability() < THRESHOLD || face.getIsRightEyeOpenProbability() < THRESHOLD){
                     showStatus("Eyes Closed, Play Alert!");
                     playAlarm();
                 }
+                // If face turned too far RIGHT then update text and play alarm
                 if(face.getEulerY() < TURNING_RIGHT_THRESHOLD){
-                    //showStatus(Float.toString(face.getEulerY()));
+                    //showStatus(Float.toString(face.getEulerY())); // used to show returned value of getEulerY()
                     showStatus("Turned Right, Play Alert!");
                     playAlarm();
                 }
+                // If face turned too far LEFT then update text and play alarm
                 if(face.getEulerY() > TURNING_LEFT_THRESHOLD){
-                    //showStatus(Float.toString(face.getEulerY()));
+                    //showStatus(Float.toString(face.getEulerY())); // used to show returned value of getEulerY()
                     showStatus("Turned Left, Play Alert!");
                     playAlarm();
                 }
@@ -109,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
         public void onMissing(Detector.Detections<Face> detections) {
             super.onMissing(detections);
             showStatus("Face Not Detected yet!");
-            /** Possibly play alarm here? **/
+            /** Possibly play alarm here **/
         }//end onMissing
 
         @Override
@@ -124,7 +127,6 @@ public class MainActivity extends AppCompatActivity {
 
     private class FaceTrackerFactory implements MultiProcessor.Factory<Face> {
 
-        // Uncertain if actually used
         private FaceTrackerFactory() { /***************/ }
         @Override
         public Tracker<Face> create(Face face) { return new EyesTracker(); }//end create
