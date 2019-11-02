@@ -133,7 +133,6 @@ public class MainActivity extends AppCompatActivity {
             last_time = time;
 
             if (isAttentive) {
-                //pauseAlarm(); // Still causes no alarm sound
                 inattentiveTime = 0;
             }
             else {
@@ -195,6 +194,7 @@ public class MainActivity extends AppCompatActivity {
             super.onMissing(detections);
             showStatus("Face Not Detected yet!");
             if(startWasPressed){
+                isAttentive = false;
                 playAlarm();
             }
         }//end onMissing
