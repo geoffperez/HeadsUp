@@ -22,6 +22,7 @@ import java.util.concurrent.TimeUnit;
 
 /* TODO:
     - Implement timer to stop fast reacting alarm [x]
+    - Fix pauseAlarm method. Currently causes all audio to stop [ ]
     - Generic Performance improvements [ ]
     - Improve formatting, readability, etc. [ ]
 */
@@ -193,7 +194,9 @@ public class MainActivity extends AppCompatActivity {
         public void onMissing(Detector.Detections<Face> detections) {
             super.onMissing(detections);
             showStatus("Face Not Detected yet!");
-            // Possibly play alarm here - Still to be determined
+            if(startWasPressed){
+                playAlarm();
+            }
         }//end onMissing
 
         @Override
