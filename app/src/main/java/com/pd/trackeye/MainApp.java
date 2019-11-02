@@ -22,7 +22,6 @@ import java.util.concurrent.TimeUnit;
 
 /* TODO:
     - Implement timer to stop fast reacting alarm [x]
-    - Fix pauseAlarm method. Currently causes all audio to stop [ ]
     - Generic Performance improvements [ ]
     - Improve formatting, readability, etc. [ ]
 */
