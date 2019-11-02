@@ -2,17 +2,13 @@ package com.pd.trackeye;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
-import android.os.CountDownTimer;   //Import for timer - Not used YET!
+import android.os.CountDownTimer;   //import for timer - Not used YET!
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import java.util.concurrent.*;
-//import androidx.appcompat.app.AppCompatActivity;
-//import androidx.core.app.ActivityCompat;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.media.MediaPlayer;
 import com.google.android.gms.vision.CameraSource;
@@ -21,9 +17,8 @@ import com.google.android.gms.vision.MultiProcessor;
 import com.google.android.gms.vision.Tracker;
 import com.google.android.gms.vision.face.Face;
 import com.google.android.gms.vision.face.FaceDetector;
-import com.pd.trackeye.R;
-
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 /* TODO:
     - Implement timer to stop fast reacting alarm [x]
@@ -32,15 +27,14 @@ import java.io.IOException;
     - Improve formatting, readability, etc. [ ]
 */
 
-public class MainApp extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
-    private static final String TAG = "MainApp";
+    private static final String TAG = "MainActivity";
     EditText textView;                  // Shows eye tracking status / message to user
     MediaPlayer mp;                     // Declare media player (alarm)
     MediaPlayer mpT;                    // Declare media player (pingone)
     CameraSource cameraSource;          // Declare cameraSource
-    ProgressBar progressBar;
-    boolean startWasPressed = false;// Used to check if "start" is pressed
+    boolean startWasPressed = false;    // Used to check if "start" is pressed
     TimeUnit time = TimeUnit.SECONDS;
     long timeToSleep = 2L;
     boolean timeUp=false;
@@ -48,12 +42,11 @@ public class MainApp extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(com.pd.trackeye.R.layout.activity_main);                     // Display main view
-        mp = MediaPlayer.create(this, com.pd.trackeye.R.raw.alarm);                  // Create media player
-        mpT = MediaPlayer.create(this, R.raw.ping_one);               // Create media player
-        final Button startButton = findViewById(com.pd.trackeye.R.id.startButton);  // Refers to start button
-        final Button closeButton = findViewById(com.pd.trackeye.R.id.closeButton);  // Refers to close button
-        progressBar=findViewById(com.pd.trackeye.R.id.progressBar);
+        setContentView(R.layout.activity_main);                     // Display main view
+        mp = MediaPlayer.create(this,R.raw.orb);                    // Create media player
+        mpT = MediaPlayer.create(this,R.raw.pingone);               // Create media player
+        final Button startButton = findViewById(R.id.startButton);  // Refers to start button
+        final Button closeButton = findViewById(R.id.closeButton);  // Refers to close button
 
         // Listen for Start button to be pressed
         startButton.setOnClickListener(new View.OnClickListener() {
@@ -70,83 +63,74 @@ public class MainApp extends AppCompatActivity {
         // Listen for close button to be pressed
         closeButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) { closeApplication(); }
+            public void onClick(View view) { playPing(); closeApplication(); }
         });
 
         // Request permission to use device camera and handle otherwise
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 1);
             Toast.makeText(this, "Grant Permission and restart app", Toast.LENGTH_SHORT).show();
         }
         else {
-            textView = findViewById(com.pd.trackeye.R.id.textView);
+            textView = findViewById(R.id.textView);
             createCameraSource();
         }
 
     }//end onCreate
-
-
+    
     // Used to play ping on button press
     public void playPing() {
         mpT.start();
     } //end playPing
-
+    
     // Used to play alarm when driver not paying attention
     public void playAlarm() {
         mp.start();
     } //end playAlarm
 
-    // In progress - Causes no sound to play at all
     // Used to pause alarm when driver pays attention again
-    public void pauseAlarm() { mp.pause(); } //end pauseAlarm
+    public void pauseAlarm() {
+        mp.pause();
+    } //end pauseAlarm
 
     CountDownTimer timer = new CountDownTimer(1000, 1000)
     {
-
-
         public void onTick(long millisUntilFinished) {
             int progress= (int)(millisUntilFinished / 1000);
-
             showStatus(progress+"seconds");
+
             if (progress == 0) {
                 try {time.sleep(timeToSleep);}
                 catch (InterruptedException e){cancel();}
                 playAlarm();
                 showStatus("Eyes closed, Play Alert!");
             }
-        }
+        }//end onTick
 
         @Override
         public void onFinish() {
-
             //playAlarm();
             //showStatus("Eyes closed, Play Alert!");
-        }
-
-
-    };
-
-
-
+        }//end onFinish
+        
+    };//end CountDownTimer
 
     private class EyesTracker extends Tracker<Face> {
 
-        // Thresholds define the threshold of a face being detected
+        // Thresholds define the threshold of a face being detected 
         private final float EYES_THRESHOLD = 0.75f; // Original value = 0.75f;
         private final float TURNING_RIGHT_THRESHOLD = -45f;
         private final float TURNING_LEFT_THRESHOLD = 45f;
-        private EyesTracker() { /***************/ }//end EyesTracker
+        private EyesTracker() { /******/ }//end EyesTracker
 
         //Update Variable Initialization
         long last_time = System.nanoTime();
         boolean isAttentive = true;
         float inattentiveTime = 0.0f;
-        final float INATTENTIVE_THRESHOLD = 2000000;
-
+        final float INATTENTIVE_THRESHOLD = 2000;   // 2 seconds
 
         @Override
         public void onUpdate(Detector.Detections<Face> detections, Face face) {
-
             long time = System.nanoTime();
             float delta_time = (time - last_time) / 1000000;
             last_time = time;
@@ -154,7 +138,7 @@ public class MainApp extends AppCompatActivity {
             System.out.println("delta time: " + delta_time);
 
             if (isAttentive) {
-                pauseAlarm();
+                //pauseAlarm(); // Still causes no alarm sound
                 inattentiveTime = 0;
             }
             else {
@@ -163,10 +147,8 @@ public class MainApp extends AppCompatActivity {
             }
 
             if (inattentiveTime > INATTENTIVE_THRESHOLD) {
-
                 playAlarm();
             }
-
 
             if(startWasPressed){
 
@@ -174,57 +156,34 @@ public class MainApp extends AppCompatActivity {
                 boolean HeadTurnedLeft = HeadTurnedLeft(detections,face,TURNING_LEFT_THRESHOLD);
                 boolean HeadTurnedRight = HeadTurnedRight(detections,face,TURNING_RIGHT_THRESHOLD);
 
-                // If eyes are determined to be open then update text
-                if (!EyesClosed || !HeadTurnedLeft || !HeadTurnedRight)
-                {
-                    //showStatus("Eyes Open.");
+                // If eyes are determined to be OPEN then update text
+                if (!EyesClosed || !HeadTurnedLeft || !HeadTurnedRight){
                     isAttentive = true;
-                    //if (mp.isPlaying())
-                    //{pauseAlarm();}
-                    //timer.cancel();
-
-
                 }
                 // If eyes are CLOSED then update text and play alarm
                 if (EyesClosed){
                     isAttentive = false;
-                    //timer.start();
-
-                    //playAlarm();
                 }
                 // If head is turned too far RIGHT then update text and play alarm
                 if(HeadTurnedRight){
                     isAttentive = false;
-                    //showStatus(Float.toString(face.getEulerY())); // Used to show returned value of getEulerY
-//                        showStatus("Turned Right, Play Alert!");
-                    //playAlarm();
-                    //timer.start();
                 }
                 // If head is turned too far LEFT then update text and play alarm
                 if(HeadTurnedLeft){
                     isAttentive = false;
-                    //showStatus(Float.toString(face.getEulerY())); // Used to show returned value of getEulerY
-//                        showStatus("Turned Left, Play Alert!");
-                    // playAlarm();
-                    //timer.start();
-                }
-                if (!HeadTurnedRight && !HeadTurnedLeft){
-
-                    //timer.cancel();
-                    //timer.cancel();
                 }
             }//end if startWasPressed
         }//end onUpdate
-
 
         public boolean EyesClosed(Detector.Detections<Face> detections, Face face, float threshold){
             boolean closed;
             if (face.getIsLeftEyeOpenProbability()>EYES_THRESHOLD && face.getIsRightEyeOpenProbability()> EYES_THRESHOLD )
                 closed = false;
-            else closed = true;
-
+            else {
+                closed = true;
+            }
             return closed;
-        }
+        }//end EyesClosed
 
         public boolean HeadTurnedLeft(Detector.Detections<Face> detections, Face face, float threshold) {
             boolean turned;
@@ -233,10 +192,8 @@ public class MainApp extends AppCompatActivity {
             else {
                 turned = false;
             }
-
             return turned;
-
-        }
+        }//end HeadTurnedLeft
 
         public boolean HeadTurnedRight(Detector.Detections<Face> detections, Face face, float threshold) {
             boolean turned;
@@ -245,20 +202,13 @@ public class MainApp extends AppCompatActivity {
             else {
                 turned = false;
             }
-
             return turned;
-
-        }
-
-
+        }//end HeadTurnedRight
 
         @Override
         public void onMissing(Detector.Detections<Face> detections) {
             super.onMissing(detections);
             showStatus("Face Not Detected yet!");
-            playAlarm();
-
-
             // Possibly play alarm here - Still to be determined
         }//end onMissing
 
@@ -358,9 +308,8 @@ public class MainApp extends AppCompatActivity {
     public void showStatus(final String message) {
         runOnUiThread(new Runnable() {
             @Override
-            public void run() { textView.setText(message);  } // Used to update text notification
+            public void run() { textView.setText(message); } // Used to update text notification
         });
-
     }//end showStatus
 
-}//end class MainApp
+}//end class MainActivity
