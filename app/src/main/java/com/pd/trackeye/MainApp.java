@@ -31,20 +31,19 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
     EditText textView;                  // Shows eye tracking status / message to user
-    MediaPlayer mp;                     // Declare media player (alarm)
-    MediaPlayer mpT;                    // Declare media player (pingone)
+    MediaPlayer mp;                     // Declare media player (alarm: orb.mp3)
+    MediaPlayer mpT;                    // Declare media player (button_ping: pingone.wav)
     CameraSource cameraSource;          // Declare cameraSource
     boolean startWasPressed = false;    // Used to check if "start" is pressed
     TimeUnit time = TimeUnit.SECONDS;
     long timeToSleep = 2L;
-    boolean timeUp=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);                     // Display main view
-        mp = MediaPlayer.create(this,R.raw.orb);                    // Create media player
-        mpT = MediaPlayer.create(this,R.raw.pingone);               // Create media player
+        mp = MediaPlayer.create(this,R.raw.orb);            // Create media player
+        mpT = MediaPlayer.create(this,R.raw.pingone);       // Create media player
         final Button startButton = findViewById(R.id.startButton);  // Refers to start button
         final Button closeButton = findViewById(R.id.closeButton);  // Refers to close button
 
@@ -109,8 +108,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onFinish() {
-            //playAlarm();
-            //showStatus("Eyes closed, Play Alert!");
+
         }//end onFinish
         
     };//end CountDownTimer
@@ -119,23 +117,20 @@ public class MainActivity extends AppCompatActivity {
 
         // Thresholds define the threshold of a face being detected 
         private final float EYES_THRESHOLD = 0.75f; // Original value = 0.75f;
-        private final float TURNING_RIGHT_THRESHOLD = -45f;
-        private final float TURNING_LEFT_THRESHOLD = 45f;
-        private EyesTracker() { /******/ }//end EyesTracker
+
+        private EyesTracker() { /**/ }//end EyesTracker
 
         //Update Variable Initialization
         long last_time = System.nanoTime();
         boolean isAttentive = true;
         float inattentiveTime = 0.0f;
-        final float INATTENTIVE_THRESHOLD = 2000;   // 2 seconds
+        final float INATTENTIVE_THRESHOLD = 2000;   // 2 seconds for timer
 
         @Override
         public void onUpdate(Detector.Detections<Face> detections, Face face) {
             long time = System.nanoTime();
             float delta_time = (time - last_time) / 1000000;
             last_time = time;
-
-            System.out.println("delta time: " + delta_time);
 
             if (isAttentive) {
                 //pauseAlarm(); // Still causes no alarm sound
@@ -153,8 +148,10 @@ public class MainActivity extends AppCompatActivity {
             if(startWasPressed){
 
                 boolean EyesClosed = EyesClosed(detections,face,EYES_THRESHOLD);
-                boolean HeadTurnedLeft = HeadTurnedLeft(detections,face,TURNING_LEFT_THRESHOLD);
-                boolean HeadTurnedRight = HeadTurnedRight(detections,face,TURNING_RIGHT_THRESHOLD);
+                float TURNING_LEFT_THRESHOLD = 45f;
+                boolean HeadTurnedLeft = HeadTurnedLeft(detections,face, TURNING_LEFT_THRESHOLD);
+                float TURNING_RIGHT_THRESHOLD = -45f;
+                boolean HeadTurnedRight = HeadTurnedRight(detections,face, TURNING_RIGHT_THRESHOLD);
 
                 // If eyes are determined to be OPEN then update text
                 if (!EyesClosed || !HeadTurnedLeft || !HeadTurnedRight){
@@ -175,33 +172,21 @@ public class MainActivity extends AppCompatActivity {
             }//end if startWasPressed
         }//end onUpdate
 
-        public boolean EyesClosed(Detector.Detections<Face> detections, Face face, float threshold){
+        boolean EyesClosed(Detector.Detections<Face> detections, Face face, float threshold){
             boolean closed;
-            if (face.getIsLeftEyeOpenProbability()>EYES_THRESHOLD && face.getIsRightEyeOpenProbability()> EYES_THRESHOLD )
-                closed = false;
-            else {
-                closed = true;
-            }
+            closed = !(face.getIsLeftEyeOpenProbability() > EYES_THRESHOLD) || !(face.getIsRightEyeOpenProbability() > EYES_THRESHOLD);
             return closed;
         }//end EyesClosed
 
-        public boolean HeadTurnedLeft(Detector.Detections<Face> detections, Face face, float threshold) {
+        boolean HeadTurnedLeft(Detector.Detections<Face> detections, Face face, float threshold) {
             boolean turned;
-            if (face.getEulerY() > threshold)
-                turned = true;
-            else {
-                turned = false;
-            }
+            turned = face.getEulerY() > threshold;
             return turned;
         }//end HeadTurnedLeft
 
-        public boolean HeadTurnedRight(Detector.Detections<Face> detections, Face face, float threshold) {
+        boolean HeadTurnedRight(Detector.Detections<Face> detections, Face face, float threshold) {
             boolean turned;
-            if (face.getEulerY() < threshold)
-                turned = true;
-            else {
-                turned = false;
-            }
+            turned = face.getEulerY() < threshold;
             return turned;
         }//end HeadTurnedRight
 
@@ -219,7 +204,7 @@ public class MainActivity extends AppCompatActivity {
 
     private class FaceTrackerFactory implements MultiProcessor.Factory<Face> {
 
-        private FaceTrackerFactory() { /***************/ }
+        private FaceTrackerFactory() { /**/ }
         @Override
         public Tracker<Face> create(Face face) { return new EyesTracker(); }//end create
 
