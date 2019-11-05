@@ -2,7 +2,6 @@ package com.pd.trackeye;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
-import android.os.CountDownTimer;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,7 +17,6 @@ import com.google.android.gms.vision.Tracker;
 import com.google.android.gms.vision.face.Face;
 import com.google.android.gms.vision.face.FaceDetector;
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 /* TODO:
     - Generic Performance improvements [ ]
@@ -83,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
         mp.start();
     } //end playAlarm
 
+    // Currently not used
     // Used to pause alarm when driver pays attention again
     public void pauseAlarm() {
         mp.pause();
@@ -145,25 +144,29 @@ public class MainActivity extends AppCompatActivity {
                 }
             }//end if startWasPressed
         }//end onUpdate
-
+        
+        // Boolean to detect if Eyes are open/closed based on EYES_THRESHOLD
         boolean EyesClosed(Detector.Detections<Face> detections, Face face, float threshold){
             boolean closed;
             closed = !(face.getIsLeftEyeOpenProbability() > EYES_THRESHOLD) || !(face.getIsRightEyeOpenProbability() > EYES_THRESHOLD);
             return closed;
         }//end EyesClosed
-
+        
+        // Boolean to detect if Head is turned LEFT based on TURNING_LEFT_THRESHOLD
         boolean HeadTurnedLeft(Detector.Detections<Face> detections, Face face, float threshold) {
             boolean turned;
             turned = face.getEulerY() > threshold;
             return turned;
         }//end HeadTurnedLeft
 
+        // Boolean to detect if Head is turned RIGHT based on TURNING_RIGHT_THRESHOLD
         boolean HeadTurnedRight(Detector.Detections<Face> detections, Face face, float threshold) {
             boolean turned;
             turned = face.getEulerY() < threshold;
             return turned;
         }//end HeadTurnedRight
 
+        // Called when a face is not detected within the camera view
         @Override
         public void onMissing(Detector.Detections<Face> detections) {
             super.onMissing(detections);
@@ -186,8 +189,9 @@ public class MainActivity extends AppCompatActivity {
         public Tracker<Face> create(Face face) { return new EyesTracker(); }//end create
 
     }//end class FaceTrackerFactory
-
-    private void closeApplication(){ // Linked to Close Button press - Does exactly what you think it does
+    
+    // Linked to closeButton press - Does exactly what you think it does
+    private void closeApplication(){
         finish();
         moveTaskToBack(true);
     }//end closeApplication
