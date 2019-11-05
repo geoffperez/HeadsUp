@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 /* TODO:
-    - Implement timer to stop fast reacting alarm [x]
     - Generic Performance improvements [ ]
     - Improve formatting, readability, etc. [ ]
 */
@@ -34,8 +33,6 @@ public class MainActivity extends AppCompatActivity {
     MediaPlayer mpT;                    // Declare media player (button_ping: pingone.wav)
     CameraSource cameraSource;          // Declare cameraSource
     boolean startWasPressed = false;    // Used to check if "start" is pressed
-    TimeUnit time = TimeUnit.SECONDS;
-    long timeToSleep = 2L;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,27 +88,6 @@ public class MainActivity extends AppCompatActivity {
         mp.pause();
     } //end pauseAlarm
 
-    CountDownTimer timer = new CountDownTimer(1000, 1000)
-    {
-        public void onTick(long millisUntilFinished) {
-            int progress= (int)(millisUntilFinished / 1000);
-            showStatus(progress+"seconds");
-
-            if (progress == 0) {
-                try {time.sleep(timeToSleep);}
-                catch (InterruptedException e){cancel();}
-                playAlarm();
-                showStatus("Eyes closed, Play Alert!");
-            }
-        }//end onTick
-
-        @Override
-        public void onFinish() {
-
-        }//end onFinish
-        
-    };//end CountDownTimer
-
     private class EyesTracker extends Tracker<Face> {
 
         // Thresholds define the threshold of a face being detected 
@@ -146,9 +122,9 @@ public class MainActivity extends AppCompatActivity {
             if(startWasPressed){
 
                 boolean EyesClosed = EyesClosed(detections,face,EYES_THRESHOLD);
-                float TURNING_LEFT_THRESHOLD = 45f;
+                float TURNING_LEFT_THRESHOLD = 35f;
                 boolean HeadTurnedLeft = HeadTurnedLeft(detections,face, TURNING_LEFT_THRESHOLD);
-                float TURNING_RIGHT_THRESHOLD = -45f;
+                float TURNING_RIGHT_THRESHOLD = -35f;
                 boolean HeadTurnedRight = HeadTurnedRight(detections,face, TURNING_RIGHT_THRESHOLD);
 
                 // If eyes are determined to be OPEN then update text
@@ -211,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
 
     }//end class FaceTrackerFactory
 
-    private void closeApplication(){ // Linked to button press - Does exactly what you think it does
+    private void closeApplication(){ // Linked to Close Button press - Does exactly what you think it does
         finish();
         moveTaskToBack(true);
     }//end closeApplication
