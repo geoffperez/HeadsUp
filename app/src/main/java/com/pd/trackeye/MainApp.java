@@ -103,7 +103,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onUpdate(Detector.Detections<Face> detections, Face face) {
             long time = System.nanoTime();
-            float delta_time = (time - last_time) / 1000000;
+            long nanosPerSecond = 1000000;  // Number of nanoseconds per second
+            float delta_time = (time - last_time) / nanosPerSecond;
             last_time = time;
 
             if (isAttentive) {
