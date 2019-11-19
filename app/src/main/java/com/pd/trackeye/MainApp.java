@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         mpT = MediaPlayer.create(this,R.raw.pingone);       // Create media player
         final Button startButton = findViewById(R.id.startButton);  // Refers to start button
         final Button closeButton = findViewById(R.id.closeButton);  // Refers to close button
+        final Button devButton = findViewById(R.id.devButton);  // Refers to start button
 
         // Listen for Start button to be pressed
         startButton.setOnClickListener(new View.OnClickListener() {
@@ -47,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 startWasPressed = true;                     // Trigger startWasPressed
                 playPing();                                 // Play ping sound
-                textView.setVisibility(View.VISIBLE);       // Show text on app start
+                textView.setVisibility(View.INVISIBLE);     // Show text on app start
                 startButton.setVisibility(View.INVISIBLE);  // Hide Start button on app start
                 closeButton.setVisibility(View.VISIBLE);    // Show Close button on app start
             }
@@ -58,6 +59,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) { playPing(); closeApplication(); }
         });
+
+        devButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                 textView.setVisibility(View.VISIBLE);
+            }//end OnClick
+        });//end OnClickListener
 
         // Request permission to use device camera and handle otherwise
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
@@ -70,12 +78,12 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }//end onCreate
-    
+
     // Used to play ping on button press
     public void playPing() {
         mpT.start();
     } //end playPing
-    
+
     // Used to play alarm when driver not paying attention
     public void playAlarm() {
         mp.start();
@@ -145,14 +153,14 @@ public class MainActivity extends AppCompatActivity {
                 }
             }//end if startWasPressed
         }//end onUpdate
-        
+
         // Boolean to detect if Eyes are open/closed based on EYES_THRESHOLD
         boolean EyesClosed(Detector.Detections<Face> detections, Face face, float threshold){
             boolean closed;
             closed = !(face.getIsLeftEyeOpenProbability() > EYES_THRESHOLD) || !(face.getIsRightEyeOpenProbability() > EYES_THRESHOLD);
             return closed;
         }//end EyesClosed
-        
+
         // Boolean to detect if Head is turned LEFT based on TURNING_LEFT_THRESHOLD
         boolean HeadTurnedLeft(Detector.Detections<Face> detections, Face face, float threshold) {
             boolean turned;
@@ -190,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
         public Tracker<Face> create(Face face) { return new EyesTracker(); }//end create
 
     }//end class FaceTrackerFactory
-    
+
     // Linked to closeButton press - Does exactly what you think it does
     private void closeApplication(){
         finish();
