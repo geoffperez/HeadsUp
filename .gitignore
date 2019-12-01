@@ -137,3 +137,5 @@ gradle-app.setting
 **/build/
 
 # End of https://www.gitignore.io/api/swift,xcode,firebase,cocoapods,gradle
+
+local.properties
