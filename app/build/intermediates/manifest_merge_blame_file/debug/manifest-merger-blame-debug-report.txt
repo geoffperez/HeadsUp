@@ -1,0 +1,363 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.pd.trackeye"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="15"
+8-->/Users/mohammed/Library/Mobile Documents/com~apple~CloudDocs/school/UHCL/Fall_2019/CSCI4388-SeniorProjectInComputerScience/HeadsUp/app/src/main/AndroidManifest.xml
+9        android:targetSdkVersion="28" />
+9-->/Users/mohammed/Library/Mobile Documents/com~apple~CloudDocs/school/UHCL/Fall_2019/CSCI4388-SeniorProjectInComputerScience/HeadsUp/app/src/main/AndroidManifest.xml
+10
+11    <uses-permission android:name="android.permission.CAMERA" />
+11-->/Users/mohammed/Library/Mobile Documents/com~apple~CloudDocs/school/UHCL/Fall_2019/CSCI4388-SeniorProjectInComputerScience/HeadsUp/app/src/main/AndroidManifest.xml:5:5-65
+11-->/Users/mohammed/Library/Mobile Documents/com~apple~CloudDocs/school/UHCL/Fall_2019/CSCI4388-SeniorProjectInComputerScience/HeadsUp/app/src/main/AndroidManifest.xml:5:22-62
+12
+13    <!-- Include required permissions for Google Mobile Ads to run -->
+14    <uses-permission android:name="android.permission.INTERNET" />
+14-->[com.google.android.gms:play-services-ads-lite:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/2450bafac107baf7051f4a04e23265b5/play-services-ads-lite-12.0.1/AndroidManifest.xml:23:5-67
+14-->[com.google.android.gms:play-services-ads-lite:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/2450bafac107baf7051f4a04e23265b5/play-services-ads-lite-12.0.1/AndroidManifest.xml:23:22-64
+15    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- Optional permission for Analytics to run. -->
+15-->[com.google.android.gms:play-services-ads-lite:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/2450bafac107baf7051f4a04e23265b5/play-services-ads-lite-12.0.1/AndroidManifest.xml:24:5-79
+15-->[com.google.android.gms:play-services-ads-lite:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/2450bafac107baf7051f4a04e23265b5/play-services-ads-lite-12.0.1/AndroidManifest.xml:24:22-76
+16    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Required by older versions of Google Play services to create GCM registration tokens -->
+16-->[com.google.android.gms:play-services-analytics:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/653abfd96342298064fa5d191584afc5/play-services-analytics-12.0.1/AndroidManifest.xml:27:5-68
+16-->[com.google.android.gms:play-services-analytics:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/653abfd96342298064fa5d191584afc5/play-services-analytics-12.0.1/AndroidManifest.xml:27:22-65
+17    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+17-->[com.google.android.gms:play-services-gcm:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/6f4b7c11c66dfdfa6b1c0997fe511222/play-services-gcm-12.0.1/AndroidManifest.xml:23:5-82
+17-->[com.google.android.gms:play-services-gcm:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/6f4b7c11c66dfdfa6b1c0997fe511222/play-services-gcm-12.0.1/AndroidManifest.xml:23:22-79
+18
+19    <uses-feature
+19-->[com.google.android.gms:play-services-maps:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/726289a817ba698659d0e1d51eeb9c60/play-services-maps-12.0.1/AndroidManifest.xml:26:5-28:35
+20        android:glEsVersion="0x00020000"
+20-->[com.google.android.gms:play-services-maps:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/726289a817ba698659d0e1d51eeb9c60/play-services-maps-12.0.1/AndroidManifest.xml:27:9-41
+21        android:required="true" />
+21-->[com.google.android.gms:play-services-maps:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/726289a817ba698659d0e1d51eeb9c60/play-services-maps-12.0.1/AndroidManifest.xml:28:9-32
+22
+23    <permission
+23-->[com.google.firebase:firebase-iid:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/3f7bc67d767507bb203efd53b2a01b68/firebase-iid-12.0.1/AndroidManifest.xml:28:5-30:47
+24        android:name="com.pd.trackeye.permission.C2D_MESSAGE"
+24-->[com.google.firebase:firebase-iid:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/3f7bc67d767507bb203efd53b2a01b68/firebase-iid-12.0.1/AndroidManifest.xml:29:9-63
+25        android:protectionLevel="signature" />
+25-->[com.google.firebase:firebase-iid:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/3f7bc67d767507bb203efd53b2a01b68/firebase-iid-12.0.1/AndroidManifest.xml:30:9-44
+26
+27    <uses-permission android:name="com.pd.trackeye.permission.C2D_MESSAGE" />
+27-->[com.google.firebase:firebase-iid:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/3f7bc67d767507bb203efd53b2a01b68/firebase-iid-12.0.1/AndroidManifest.xml:32:5-79
+27-->[com.google.firebase:firebase-iid:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/3f7bc67d767507bb203efd53b2a01b68/firebase-iid-12.0.1/AndroidManifest.xml:32:22-76
+28
+29    <application
+29-->/Users/mohammed/Library/Mobile Documents/com~apple~CloudDocs/school/UHCL/Fall_2019/CSCI4388-SeniorProjectInComputerScience/HeadsUp/app/src/main/AndroidManifest.xml:6:5-21:19
+30        android:name="android.support.multidex.MultiDexApplication"
+31        android:allowBackup="true"
+31-->/Users/mohammed/Library/Mobile Documents/com~apple~CloudDocs/school/UHCL/Fall_2019/CSCI4388-SeniorProjectInComputerScience/HeadsUp/app/src/main/AndroidManifest.xml:7:9-35
+32        android:appComponentFactory="android.support.v4.app.CoreComponentFactory"
+32-->[com.android.support:support-compat:28.0.0] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/b73d0db3c489aeab8b531c92b0313ef9/support-compat-28.0.0/AndroidManifest.xml:22:18-91
+33        android:debuggable="true"
+34        android:icon="@drawable/eye"
+34-->/Users/mohammed/Library/Mobile Documents/com~apple~CloudDocs/school/UHCL/Fall_2019/CSCI4388-SeniorProjectInComputerScience/HeadsUp/app/src/main/AndroidManifest.xml:8:9-37
+35        android:label="Heads Up"
+35-->/Users/mohammed/Library/Mobile Documents/com~apple~CloudDocs/school/UHCL/Fall_2019/CSCI4388-SeniorProjectInComputerScience/HeadsUp/app/src/main/AndroidManifest.xml:9:9-33
+36        android:roundIcon="@drawable/eye"
+36-->/Users/mohammed/Library/Mobile Documents/com~apple~CloudDocs/school/UHCL/Fall_2019/CSCI4388-SeniorProjectInComputerScience/HeadsUp/app/src/main/AndroidManifest.xml:10:9-42
+37        android:supportsRtl="true"
+37-->/Users/mohammed/Library/Mobile Documents/com~apple~CloudDocs/school/UHCL/Fall_2019/CSCI4388-SeniorProjectInComputerScience/HeadsUp/app/src/main/AndroidManifest.xml:11:9-35
+38        android:theme="@style/AppTheme" >
+38-->/Users/mohammed/Library/Mobile Documents/com~apple~CloudDocs/school/UHCL/Fall_2019/CSCI4388-SeniorProjectInComputerScience/HeadsUp/app/src/main/AndroidManifest.xml:12:9-40
+39        <activity
+39-->/Users/mohammed/Library/Mobile Documents/com~apple~CloudDocs/school/UHCL/Fall_2019/CSCI4388-SeniorProjectInComputerScience/HeadsUp/app/src/main/AndroidManifest.xml:13:9-20:20
+40            android:name="com.pd.trackeye.MainActivity"
+40-->/Users/mohammed/Library/Mobile Documents/com~apple~CloudDocs/school/UHCL/Fall_2019/CSCI4388-SeniorProjectInComputerScience/HeadsUp/app/src/main/AndroidManifest.xml:13:19-47
+41            android:screenOrientation="portrait" >
+41-->/Users/mohammed/Library/Mobile Documents/com~apple~CloudDocs/school/UHCL/Fall_2019/CSCI4388-SeniorProjectInComputerScience/HeadsUp/app/src/main/AndroidManifest.xml:14:13-49
+42            <intent-filter>
+42-->/Users/mohammed/Library/Mobile Documents/com~apple~CloudDocs/school/UHCL/Fall_2019/CSCI4388-SeniorProjectInComputerScience/HeadsUp/app/src/main/AndroidManifest.xml:15:13-19:29
+43                <action android:name="android.intent.action.MAIN" />
+43-->/Users/mohammed/Library/Mobile Documents/com~apple~CloudDocs/school/UHCL/Fall_2019/CSCI4388-SeniorProjectInComputerScience/HeadsUp/app/src/main/AndroidManifest.xml:16:17-69
+43-->/Users/mohammed/Library/Mobile Documents/com~apple~CloudDocs/school/UHCL/Fall_2019/CSCI4388-SeniorProjectInComputerScience/HeadsUp/app/src/main/AndroidManifest.xml:16:25-66
+44
+45                <category android:name="android.intent.category.LAUNCHER" />
+45-->/Users/mohammed/Library/Mobile Documents/com~apple~CloudDocs/school/UHCL/Fall_2019/CSCI4388-SeniorProjectInComputerScience/HeadsUp/app/src/main/AndroidManifest.xml:18:17-77
+45-->/Users/mohammed/Library/Mobile Documents/com~apple~CloudDocs/school/UHCL/Fall_2019/CSCI4388-SeniorProjectInComputerScience/HeadsUp/app/src/main/AndroidManifest.xml:18:27-74
+46            </intent-filter>
+47        </activity>
+48
+49        <receiver android:name="com.google.android.gms.cast.framework.media.MediaIntentReceiver" />
+49-->[com.google.android.gms:play-services-cast-framework:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/631731819abda758889758121904bbdd/play-services-cast-framework-12.0.1/AndroidManifest.xml:8:9-100
+49-->[com.google.android.gms:play-services-cast-framework:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/631731819abda758889758121904bbdd/play-services-cast-framework-12.0.1/AndroidManifest.xml:8:19-97
+50
+51        <service android:name="com.google.android.gms.cast.framework.media.MediaNotificationService" />
+51-->[com.google.android.gms:play-services-cast-framework:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/631731819abda758889758121904bbdd/play-services-cast-framework-12.0.1/AndroidManifest.xml:10:9-104
+51-->[com.google.android.gms:play-services-cast-framework:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/631731819abda758889758121904bbdd/play-services-cast-framework-12.0.1/AndroidManifest.xml:10:18-101
+52        <service android:name="com.google.android.gms.cast.framework.ReconnectionService" />
+52-->[com.google.android.gms:play-services-cast-framework:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/631731819abda758889758121904bbdd/play-services-cast-framework-12.0.1/AndroidManifest.xml:11:9-93
+52-->[com.google.android.gms:play-services-cast-framework:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/631731819abda758889758121904bbdd/play-services-cast-framework-12.0.1/AndroidManifest.xml:11:18-90
+53
+54        <meta-data
+54-->[com.android.support:mediarouter-v7:26.1.0] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/7804fdd88cb835f246b01d17df0377c8/mediarouter-v7-26.1.0/AndroidManifest.xml:23:9-25:38
+55            android:name="android.support.VERSION"
+55-->[com.android.support:mediarouter-v7:26.1.0] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/7804fdd88cb835f246b01d17df0377c8/mediarouter-v7-26.1.0/AndroidManifest.xml:24:13-51
+56            android:value="26.1.0" /> <!-- Include the AdActivity and InAppPurchaseActivity configChanges and themes. -->
+56-->[com.android.support:mediarouter-v7:26.1.0] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/7804fdd88cb835f246b01d17df0377c8/mediarouter-v7-26.1.0/AndroidManifest.xml:25:13-35
+57        <activity
+57-->[com.google.android.gms:play-services-ads-lite:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/2450bafac107baf7051f4a04e23265b5/play-services-ads-lite-12.0.1/AndroidManifest.xml:29:9-33:64
+58            android:name="com.google.android.gms.ads.AdActivity"
+58-->[com.google.android.gms:play-services-ads-lite:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/2450bafac107baf7051f4a04e23265b5/play-services-ads-lite-12.0.1/AndroidManifest.xml:30:13-65
+59            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+59-->[com.google.android.gms:play-services-ads-lite:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/2450bafac107baf7051f4a04e23265b5/play-services-ads-lite-12.0.1/AndroidManifest.xml:31:13-122
+60            android:exported="false"
+60-->[com.google.android.gms:play-services-ads-lite:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/2450bafac107baf7051f4a04e23265b5/play-services-ads-lite-12.0.1/AndroidManifest.xml:32:13-37
+61            android:theme="@android:style/Theme.Translucent" />
+61-->[com.google.android.gms:play-services-ads-lite:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/2450bafac107baf7051f4a04e23265b5/play-services-ads-lite-12.0.1/AndroidManifest.xml:33:13-61
+62
+63        <receiver
+63-->[com.google.android.gms:play-services-analytics:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/653abfd96342298064fa5d191584afc5/play-services-analytics-12.0.1/AndroidManifest.xml:30:9-34:20
+64            android:name="com.google.android.gms.analytics.AnalyticsReceiver"
+64-->[com.google.android.gms:play-services-analytics:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/653abfd96342298064fa5d191584afc5/play-services-analytics-12.0.1/AndroidManifest.xml:31:13-78
+65            android:enabled="true"
+65-->[com.google.android.gms:play-services-analytics:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/653abfd96342298064fa5d191584afc5/play-services-analytics-12.0.1/AndroidManifest.xml:32:13-35
+66            android:exported="false" >
+66-->[com.google.android.gms:play-services-analytics:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/653abfd96342298064fa5d191584afc5/play-services-analytics-12.0.1/AndroidManifest.xml:33:13-37
+67        </receiver>
+68
+69        <service
+69-->[com.google.android.gms:play-services-analytics:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/653abfd96342298064fa5d191584afc5/play-services-analytics-12.0.1/AndroidManifest.xml:36:9-39:40
+70            android:name="com.google.android.gms.analytics.AnalyticsService"
+70-->[com.google.android.gms:play-services-analytics:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/653abfd96342298064fa5d191584afc5/play-services-analytics-12.0.1/AndroidManifest.xml:37:13-77
+71            android:enabled="true"
+71-->[com.google.android.gms:play-services-analytics:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/653abfd96342298064fa5d191584afc5/play-services-analytics-12.0.1/AndroidManifest.xml:38:13-35
+72            android:exported="false" />
+72-->[com.google.android.gms:play-services-analytics:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/653abfd96342298064fa5d191584afc5/play-services-analytics-12.0.1/AndroidManifest.xml:39:13-37
+73        <service
+73-->[com.google.android.gms:play-services-analytics:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/653abfd96342298064fa5d191584afc5/play-services-analytics-12.0.1/AndroidManifest.xml:40:9-44:72
+74            android:name="com.google.android.gms.analytics.AnalyticsJobService"
+74-->[com.google.android.gms:play-services-analytics:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/653abfd96342298064fa5d191584afc5/play-services-analytics-12.0.1/AndroidManifest.xml:41:13-80
+75            android:enabled="true"
+75-->[com.google.android.gms:play-services-analytics:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/653abfd96342298064fa5d191584afc5/play-services-analytics-12.0.1/AndroidManifest.xml:42:13-35
+76            android:exported="false"
+76-->[com.google.android.gms:play-services-analytics:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/653abfd96342298064fa5d191584afc5/play-services-analytics-12.0.1/AndroidManifest.xml:43:13-37
+77            android:permission="android.permission.BIND_JOB_SERVICE" />
+77-->[com.google.android.gms:play-services-analytics:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/653abfd96342298064fa5d191584afc5/play-services-analytics-12.0.1/AndroidManifest.xml:44:13-69
+78
+79        <activity
+79-->[com.google.android.gms:play-services-appinvite:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/729b1a76da86d73b8bcc8764e71131e8/play-services-appinvite-12.0.1/AndroidManifest.xml:25:9-34:20
+80            android:name="com.google.android.gms.appinvite.PreviewActivity"
+80-->[com.google.android.gms:play-services-appinvite:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/729b1a76da86d73b8bcc8764e71131e8/play-services-appinvite-12.0.1/AndroidManifest.xml:26:13-76
+81            android:exported="true"
+81-->[com.google.android.gms:play-services-appinvite:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/729b1a76da86d73b8bcc8764e71131e8/play-services-appinvite-12.0.1/AndroidManifest.xml:27:13-36
+82            android:theme="@style/Theme.AppInvite.Preview" >
+82-->[com.google.android.gms:play-services-appinvite:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/729b1a76da86d73b8bcc8764e71131e8/play-services-appinvite-12.0.1/AndroidManifest.xml:28:13-59
+83            <intent-filter>
+83-->[com.google.android.gms:play-services-appinvite:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/729b1a76da86d73b8bcc8764e71131e8/play-services-appinvite-12.0.1/AndroidManifest.xml:29:13-33:29
+84                <action android:name="com.google.android.gms.appinvite.ACTION_PREVIEW" />
+84-->[com.google.android.gms:play-services-appinvite:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/729b1a76da86d73b8bcc8764e71131e8/play-services-appinvite-12.0.1/AndroidManifest.xml:30:17-90
+84-->[com.google.android.gms:play-services-appinvite:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/729b1a76da86d73b8bcc8764e71131e8/play-services-appinvite-12.0.1/AndroidManifest.xml:30:25-87
+85
+86                <category android:name="android.intent.category.DEFAULT" />
+86-->[com.google.android.gms:play-services-appinvite:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/729b1a76da86d73b8bcc8764e71131e8/play-services-appinvite-12.0.1/AndroidManifest.xml:32:17-76
+86-->[com.google.android.gms:play-services-appinvite:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/729b1a76da86d73b8bcc8764e71131e8/play-services-appinvite-12.0.1/AndroidManifest.xml:32:27-73
+87            </intent-filter>
+88        </activity>
+89        <activity
+89-->[com.google.android.gms:play-services-auth:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/ba14473b859604ba0dbfc33bebcfe345/play-services-auth-12.0.1/AndroidManifest.xml:23:9-27:75
+90            android:name="com.google.android.gms.auth.api.signin.internal.SignInHubActivity"
+90-->[com.google.android.gms:play-services-auth:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/ba14473b859604ba0dbfc33bebcfe345/play-services-auth-12.0.1/AndroidManifest.xml:24:13-93
+91            android:excludeFromRecents="true"
+91-->[com.google.android.gms:play-services-auth:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/ba14473b859604ba0dbfc33bebcfe345/play-services-auth-12.0.1/AndroidManifest.xml:25:13-46
+92            android:exported="false"
+92-->[com.google.android.gms:play-services-auth:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/ba14473b859604ba0dbfc33bebcfe345/play-services-auth-12.0.1/AndroidManifest.xml:26:13-37
+93            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+93-->[com.google.android.gms:play-services-auth:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/ba14473b859604ba0dbfc33bebcfe345/play-services-auth-12.0.1/AndroidManifest.xml:27:13-72
+94        <!--
+95            Service handling Google Sign-In user revocation. For apps that do not integrate with
+96            Google Sign-In, this service will never be started.
+97        -->
+98        <service
+98-->[com.google.android.gms:play-services-auth:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/ba14473b859604ba0dbfc33bebcfe345/play-services-auth-12.0.1/AndroidManifest.xml:33:9-36:110
+99            android:name="com.google.android.gms.auth.api.signin.RevocationBoundService"
+99-->[com.google.android.gms:play-services-auth:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/ba14473b859604ba0dbfc33bebcfe345/play-services-auth-12.0.1/AndroidManifest.xml:34:13-89
+100            android:exported="true"
+100-->[com.google.android.gms:play-services-auth:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/ba14473b859604ba0dbfc33bebcfe345/play-services-auth-12.0.1/AndroidManifest.xml:35:13-36
+101            android:permission="com.google.android.gms.auth.api.signin.permission.REVOCATION_NOTIFICATION" />
+101-->[com.google.android.gms:play-services-auth:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/ba14473b859604ba0dbfc33bebcfe345/play-services-auth-12.0.1/AndroidManifest.xml:36:13-107
+102
+103        <activity
+103-->[com.google.firebase:firebase-auth:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/b6e7f1350f995196bed856a8facaca6d/firebase-auth-12.0.1/AndroidManifest.xml:23:9-29:75
+104            android:name="com.google.firebase.auth.internal.FederatedSignInActivity"
+104-->[com.google.firebase:firebase-auth:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/b6e7f1350f995196bed856a8facaca6d/firebase-auth-12.0.1/AndroidManifest.xml:24:13-85
+105            android:excludeFromRecents="true"
+105-->[com.google.firebase:firebase-auth:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/b6e7f1350f995196bed856a8facaca6d/firebase-auth-12.0.1/AndroidManifest.xml:25:13-46
+106            android:exported="true"
+106-->[com.google.firebase:firebase-auth:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/b6e7f1350f995196bed856a8facaca6d/firebase-auth-12.0.1/AndroidManifest.xml:26:13-36
+107            android:launchMode="singleInstance"
+107-->[com.google.firebase:firebase-auth:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/b6e7f1350f995196bed856a8facaca6d/firebase-auth-12.0.1/AndroidManifest.xml:27:13-48
+108            android:permission="com.google.firebase.auth.api.gms.permission.LAUNCH_FEDERATED_SIGN_IN"
+108-->[com.google.firebase:firebase-auth:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/b6e7f1350f995196bed856a8facaca6d/firebase-auth-12.0.1/AndroidManifest.xml:28:13-102
+109            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+109-->[com.google.firebase:firebase-auth:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/b6e7f1350f995196bed856a8facaca6d/firebase-auth-12.0.1/AndroidManifest.xml:29:13-72
+110        <activity
+110-->[com.google.android.gms:play-services-base:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/442a1228472708ee5cd371935ee72cf8/play-services-base-12.0.1/AndroidManifest.xml:23:9-26:75
+111            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+111-->[com.google.android.gms:play-services-base:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/442a1228472708ee5cd371935ee72cf8/play-services-base-12.0.1/AndroidManifest.xml:24:13-79
+112            android:exported="false"
+112-->[com.google.android.gms:play-services-base:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/442a1228472708ee5cd371935ee72cf8/play-services-base-12.0.1/AndroidManifest.xml:25:13-37
+113            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+113-->[com.google.android.gms:play-services-base:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/442a1228472708ee5cd371935ee72cf8/play-services-base-12.0.1/AndroidManifest.xml:26:13-72
+114        <!--
+115             FirebaseMessagingService performs security checks at runtime,
+116             no need for explicit permissions despite exported="true"
+117        -->
+118        <service
+118-->[com.google.firebase:firebase-messaging:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/67cf47fcb9092575b70dbac8a1880cee/firebase-messaging-12.0.1/AndroidManifest.xml:28:9-34:19
+119            android:name="com.google.firebase.messaging.FirebaseMessagingService"
+119-->[com.google.firebase:firebase-messaging:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/67cf47fcb9092575b70dbac8a1880cee/firebase-messaging-12.0.1/AndroidManifest.xml:29:13-82
+120            android:exported="true" >
+120-->[com.google.firebase:firebase-messaging:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/67cf47fcb9092575b70dbac8a1880cee/firebase-messaging-12.0.1/AndroidManifest.xml:30:13-36
+121            <intent-filter android:priority="-500" >
+121-->[com.google.firebase:firebase-messaging:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/67cf47fcb9092575b70dbac8a1880cee/firebase-messaging-12.0.1/AndroidManifest.xml:31:13-33:29
+121-->[com.google.firebase:firebase-messaging:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/67cf47fcb9092575b70dbac8a1880cee/firebase-messaging-12.0.1/AndroidManifest.xml:31:28-51
+122                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+122-->[com.google.firebase:firebase-messaging:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/67cf47fcb9092575b70dbac8a1880cee/firebase-messaging-12.0.1/AndroidManifest.xml:32:17-78
+122-->[com.google.firebase:firebase-messaging:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/67cf47fcb9092575b70dbac8a1880cee/firebase-messaging-12.0.1/AndroidManifest.xml:32:25-75
+123            </intent-filter>
+124        </service>
+125        <service
+125-->[com.google.android.gms:play-services-tagmanager-api:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/b83afce781a0881eeccacb0856731f18/play-services-tagmanager-api-12.0.1/AndroidManifest.xml:27:9-30:40
+126            android:name="com.google.android.gms.tagmanager.TagManagerService"
+126-->[com.google.android.gms:play-services-tagmanager-api:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/b83afce781a0881eeccacb0856731f18/play-services-tagmanager-api-12.0.1/AndroidManifest.xml:28:13-79
+127            android:enabled="true"
+127-->[com.google.android.gms:play-services-tagmanager-api:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/b83afce781a0881eeccacb0856731f18/play-services-tagmanager-api-12.0.1/AndroidManifest.xml:29:13-35
+128            android:exported="false" />
+128-->[com.google.android.gms:play-services-tagmanager-api:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/b83afce781a0881eeccacb0856731f18/play-services-tagmanager-api-12.0.1/AndroidManifest.xml:30:13-37
+129
+130        <activity
+130-->[com.google.android.gms:play-services-tagmanager-api:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/b83afce781a0881eeccacb0856731f18/play-services-tagmanager-api-12.0.1/AndroidManifest.xml:32:9-44:20
+131            android:name="com.google.android.gms.tagmanager.TagManagerPreviewActivity"
+131-->[com.google.android.gms:play-services-tagmanager-api:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/b83afce781a0881eeccacb0856731f18/play-services-tagmanager-api-12.0.1/AndroidManifest.xml:33:13-87
+132            android:exported="true"
+132-->[com.google.android.gms:play-services-tagmanager-api:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/b83afce781a0881eeccacb0856731f18/play-services-tagmanager-api-12.0.1/AndroidManifest.xml:34:13-36
+133            android:noHistory="true" > <!-- optional, removes the previewActivity from the activity stack. -->
+133-->[com.google.android.gms:play-services-tagmanager-api:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/b83afce781a0881eeccacb0856731f18/play-services-tagmanager-api-12.0.1/AndroidManifest.xml:35:13-37
+134            <intent-filter>
+134-->[com.google.android.gms:play-services-tagmanager-api:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/b83afce781a0881eeccacb0856731f18/play-services-tagmanager-api-12.0.1/AndroidManifest.xml:36:13-43:29
+135                <data android:scheme="tagmanager.c.com.pd.trackeye" />
+135-->[com.google.android.gms:play-services-tagmanager-api:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/b83afce781a0881eeccacb0856731f18/play-services-tagmanager-api-12.0.1/AndroidManifest.xml:37:17-72
+135-->[com.google.android.gms:play-services-tagmanager-api:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/b83afce781a0881eeccacb0856731f18/play-services-tagmanager-api-12.0.1/AndroidManifest.xml:37:23-69
+136
+137                <action android:name="android.intent.action.VIEW" />
+137-->[com.google.android.gms:play-services-tagmanager-api:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/b83afce781a0881eeccacb0856731f18/play-services-tagmanager-api-12.0.1/AndroidManifest.xml:39:17-69
+137-->[com.google.android.gms:play-services-tagmanager-api:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/b83afce781a0881eeccacb0856731f18/play-services-tagmanager-api-12.0.1/AndroidManifest.xml:39:25-66
+138
+139                <category android:name="android.intent.category.DEFAULT" />
+139-->[com.google.android.gms:play-services-appinvite:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/729b1a76da86d73b8bcc8764e71131e8/play-services-appinvite-12.0.1/AndroidManifest.xml:32:17-76
+139-->[com.google.android.gms:play-services-appinvite:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/729b1a76da86d73b8bcc8764e71131e8/play-services-appinvite-12.0.1/AndroidManifest.xml:32:27-73
+140                <category android:name="android.intent.category.BROWSABLE" />
+140-->[com.google.android.gms:play-services-tagmanager-api:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/b83afce781a0881eeccacb0856731f18/play-services-tagmanager-api-12.0.1/AndroidManifest.xml:42:17-78
+140-->[com.google.android.gms:play-services-tagmanager-api:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/b83afce781a0881eeccacb0856731f18/play-services-tagmanager-api-12.0.1/AndroidManifest.xml:42:27-75
+141            </intent-filter>
+142        </activity>
+143
+144        <receiver
+144-->[com.google.firebase:firebase-analytics:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/859188b7e176cfb0d4af3797b7554bff/firebase-analytics-12.0.1/AndroidManifest.xml:28:9-32:20
+145            android:name="com.google.android.gms.measurement.AppMeasurementReceiver"
+145-->[com.google.firebase:firebase-analytics:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/859188b7e176cfb0d4af3797b7554bff/firebase-analytics-12.0.1/AndroidManifest.xml:29:13-85
+146            android:enabled="true"
+146-->[com.google.firebase:firebase-analytics:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/859188b7e176cfb0d4af3797b7554bff/firebase-analytics-12.0.1/AndroidManifest.xml:30:13-35
+147            android:exported="false" >
+147-->[com.google.firebase:firebase-analytics:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/859188b7e176cfb0d4af3797b7554bff/firebase-analytics-12.0.1/AndroidManifest.xml:31:13-37
+148        </receiver>
+149        <receiver
+149-->[com.google.firebase:firebase-analytics:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/859188b7e176cfb0d4af3797b7554bff/firebase-analytics-12.0.1/AndroidManifest.xml:33:9-41:20
+150            android:name="com.google.android.gms.measurement.AppMeasurementInstallReferrerReceiver"
+150-->[com.google.firebase:firebase-analytics:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/859188b7e176cfb0d4af3797b7554bff/firebase-analytics-12.0.1/AndroidManifest.xml:34:13-100
+151            android:enabled="true"
+151-->[com.google.firebase:firebase-analytics:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/859188b7e176cfb0d4af3797b7554bff/firebase-analytics-12.0.1/AndroidManifest.xml:35:13-35
+152            android:exported="true"
+152-->[com.google.firebase:firebase-analytics:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/859188b7e176cfb0d4af3797b7554bff/firebase-analytics-12.0.1/AndroidManifest.xml:36:13-36
+153            android:permission="android.permission.INSTALL_PACKAGES" >
+153-->[com.google.firebase:firebase-analytics:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/859188b7e176cfb0d4af3797b7554bff/firebase-analytics-12.0.1/AndroidManifest.xml:37:13-69
+154            <intent-filter>
+154-->[com.google.firebase:firebase-analytics:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/859188b7e176cfb0d4af3797b7554bff/firebase-analytics-12.0.1/AndroidManifest.xml:38:13-40:29
+155                <action android:name="com.android.vending.INSTALL_REFERRER" />
+155-->[com.google.firebase:firebase-analytics:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/859188b7e176cfb0d4af3797b7554bff/firebase-analytics-12.0.1/AndroidManifest.xml:39:17-79
+155-->[com.google.firebase:firebase-analytics:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/859188b7e176cfb0d4af3797b7554bff/firebase-analytics-12.0.1/AndroidManifest.xml:39:25-76
+156            </intent-filter>
+157        </receiver>
+158
+159        <service
+159-->[com.google.firebase:firebase-analytics:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/859188b7e176cfb0d4af3797b7554bff/firebase-analytics-12.0.1/AndroidManifest.xml:43:9-46:40
+160            android:name="com.google.android.gms.measurement.AppMeasurementService"
+160-->[com.google.firebase:firebase-analytics:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/859188b7e176cfb0d4af3797b7554bff/firebase-analytics-12.0.1/AndroidManifest.xml:44:13-84
+161            android:enabled="true"
+161-->[com.google.firebase:firebase-analytics:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/859188b7e176cfb0d4af3797b7554bff/firebase-analytics-12.0.1/AndroidManifest.xml:45:13-35
+162            android:exported="false" />
+162-->[com.google.firebase:firebase-analytics:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/859188b7e176cfb0d4af3797b7554bff/firebase-analytics-12.0.1/AndroidManifest.xml:46:13-37
+163        <service
+163-->[com.google.firebase:firebase-analytics:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/859188b7e176cfb0d4af3797b7554bff/firebase-analytics-12.0.1/AndroidManifest.xml:47:9-51:72
+164            android:name="com.google.android.gms.measurement.AppMeasurementJobService"
+164-->[com.google.firebase:firebase-analytics:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/859188b7e176cfb0d4af3797b7554bff/firebase-analytics-12.0.1/AndroidManifest.xml:48:13-87
+165            android:enabled="true"
+165-->[com.google.firebase:firebase-analytics:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/859188b7e176cfb0d4af3797b7554bff/firebase-analytics-12.0.1/AndroidManifest.xml:49:13-35
+166            android:exported="false"
+166-->[com.google.firebase:firebase-analytics:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/859188b7e176cfb0d4af3797b7554bff/firebase-analytics-12.0.1/AndroidManifest.xml:50:13-37
+167            android:permission="android.permission.BIND_JOB_SERVICE" />
+167-->[com.google.firebase:firebase-analytics:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/859188b7e176cfb0d4af3797b7554bff/firebase-analytics-12.0.1/AndroidManifest.xml:51:13-69
+168
+169        <receiver
+169-->[com.google.firebase:firebase-iid:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/3f7bc67d767507bb203efd53b2a01b68/firebase-iid-12.0.1/AndroidManifest.xml:35:9-44:20
+170            android:name="com.google.firebase.iid.FirebaseInstanceIdReceiver"
+170-->[com.google.firebase:firebase-iid:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/3f7bc67d767507bb203efd53b2a01b68/firebase-iid-12.0.1/AndroidManifest.xml:36:13-78
+171            android:exported="true"
+171-->[com.google.firebase:firebase-iid:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/3f7bc67d767507bb203efd53b2a01b68/firebase-iid-12.0.1/AndroidManifest.xml:37:13-36
+172            android:permission="com.google.android.c2dm.permission.SEND" >
+172-->[com.google.firebase:firebase-iid:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/3f7bc67d767507bb203efd53b2a01b68/firebase-iid-12.0.1/AndroidManifest.xml:38:13-73
+173            <intent-filter>
+173-->[com.google.firebase:firebase-iid:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/3f7bc67d767507bb203efd53b2a01b68/firebase-iid-12.0.1/AndroidManifest.xml:39:13-43:29
+174                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+174-->[com.google.firebase:firebase-iid:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/3f7bc67d767507bb203efd53b2a01b68/firebase-iid-12.0.1/AndroidManifest.xml:40:17-81
+174-->[com.google.firebase:firebase-iid:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/3f7bc67d767507bb203efd53b2a01b68/firebase-iid-12.0.1/AndroidManifest.xml:40:25-78
+175
+176                <category android:name="com.pd.trackeye" />
+176-->[com.google.firebase:firebase-iid:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/3f7bc67d767507bb203efd53b2a01b68/firebase-iid-12.0.1/AndroidManifest.xml:42:17-61
+176-->[com.google.firebase:firebase-iid:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/3f7bc67d767507bb203efd53b2a01b68/firebase-iid-12.0.1/AndroidManifest.xml:42:27-58
+177            </intent-filter>
+178        </receiver>
+179        <!--
+180             FirebaseInstanceIdService performs security checks at runtime,
+181             no need for explicit permissions despite exported="true"
+182        -->
+183        <service
+183-->[com.google.firebase:firebase-iid:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/3f7bc67d767507bb203efd53b2a01b68/firebase-iid-12.0.1/AndroidManifest.xml:50:9-56:19
+184            android:name="com.google.firebase.iid.FirebaseInstanceIdService"
+184-->[com.google.firebase:firebase-iid:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/3f7bc67d767507bb203efd53b2a01b68/firebase-iid-12.0.1/AndroidManifest.xml:51:13-77
+185            android:exported="true" >
+185-->[com.google.firebase:firebase-iid:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/3f7bc67d767507bb203efd53b2a01b68/firebase-iid-12.0.1/AndroidManifest.xml:52:13-36
+186            <intent-filter android:priority="-500" >
+186-->[com.google.firebase:firebase-iid:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/3f7bc67d767507bb203efd53b2a01b68/firebase-iid-12.0.1/AndroidManifest.xml:53:13-55:29
+186-->[com.google.firebase:firebase-iid:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/3f7bc67d767507bb203efd53b2a01b68/firebase-iid-12.0.1/AndroidManifest.xml:53:28-51
+187                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
+187-->[com.google.firebase:firebase-iid:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/3f7bc67d767507bb203efd53b2a01b68/firebase-iid-12.0.1/AndroidManifest.xml:54:17-80
+187-->[com.google.firebase:firebase-iid:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/3f7bc67d767507bb203efd53b2a01b68/firebase-iid-12.0.1/AndroidManifest.xml:54:25-77
+188            </intent-filter>
+189        </service>
+190
+191        <provider
+191-->[com.google.firebase:firebase-common:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/d6fc9229fc449ab10cef2da605f0d74f/firebase-common-12.0.1/AndroidManifest.xml:8:9-12:39
+192            android:name="com.google.firebase.provider.FirebaseInitProvider"
+192-->[com.google.firebase:firebase-common:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/d6fc9229fc449ab10cef2da605f0d74f/firebase-common-12.0.1/AndroidManifest.xml:9:13-77
+193            android:authorities="com.pd.trackeye.firebaseinitprovider"
+193-->[com.google.firebase:firebase-common:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/d6fc9229fc449ab10cef2da605f0d74f/firebase-common-12.0.1/AndroidManifest.xml:10:13-72
+194            android:exported="false"
+194-->[com.google.firebase:firebase-common:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/d6fc9229fc449ab10cef2da605f0d74f/firebase-common-12.0.1/AndroidManifest.xml:11:13-37
+195            android:initOrder="100" />
+195-->[com.google.firebase:firebase-common:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/d6fc9229fc449ab10cef2da605f0d74f/firebase-common-12.0.1/AndroidManifest.xml:12:13-36
+196
+197        <meta-data
+197-->[com.google.android.gms:play-services-basement:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/e280ffb2996ef2de8483520fd5a1245c/play-services-basement-12.0.1/AndroidManifest.xml:23:9-25:69
+198            android:name="com.google.android.gms.version"
+198-->[com.google.android.gms:play-services-basement:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/e280ffb2996ef2de8483520fd5a1245c/play-services-basement-12.0.1/AndroidManifest.xml:24:13-58
+199            android:value="@integer/google_play_services_version" />
+199-->[com.google.android.gms:play-services-basement:12.0.1] /Users/mohammed/.gradle/caches/transforms-2/files-2.1/e280ffb2996ef2de8483520fd5a1245c/play-services-basement-12.0.1/AndroidManifest.xml:25:13-66
+200    </application>
+201
+202</manifest>

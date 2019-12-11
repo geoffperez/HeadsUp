@@ -1,0 +1,4 @@
+# Referenced at /Users/mohammed/Library/Mobile Documents/com~apple~CloudDocs/school/UHCL/Fall_2019/CSCI4388-SeniorProjectInComputerScience/HeadsUp/app/build/intermediates/merged_manifests/debug/AndroidManifest.xml:29
+-keep class android.support.multidex.MultiDexApplication { <init>(); }
+# Referenced at /Users/mohammed/Library/Mobile Documents/com~apple~CloudDocs/school/UHCL/Fall_2019/CSCI4388-SeniorProjectInComputerScience/HeadsUp/app/build/intermediates/merged_manifests/debug/AndroidManifest.xml:29
+-keep class android.support.v4.app.CoreComponentFactory { <init>(); }
