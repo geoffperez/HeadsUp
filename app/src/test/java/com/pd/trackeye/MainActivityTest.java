@@ -90,24 +90,24 @@ public class MainActivityTest {
         verify(mainActivityUnderTest.mpT, never()).pause();
     }
 
-    @Test
-    public void testCreateCameraSource() throws Exception {
-        // Setup
-        when(mainActivityUnderTest.cameraSource.start()).thenReturn(null);
-        // Run the test
-            mainActivityUnderTest.createCameraSource();
-        // Verify the results
-        verify(mainActivityUnderTest.cameraSource, never()).stop();
-    }
-
-    @Test
-    public void testCreateCameraSource_CameraSourceThrowsIOException() throws Exception {
-        // Setup
-        when(mainActivityUnderTest.cameraSource.start()).thenThrow(IOException.class);
-        // Run the test
-        mainActivityUnderTest.createCameraSource();
-        // Verify the results
-    }
+//    @Test
+//    public void testCreateCameraSource() throws Exception {
+//        // Setup
+//        when(mainActivityUnderTest.cameraSource.start()).thenReturn(null);
+//        // Run the test
+//            mainActivityUnderTest.createCameraSource();
+//        // Verify the results
+//        verify(mainActivityUnderTest.cameraSource, never()).stop();
+//    }
+//
+//    @Test
+//    public void testCreateCameraSource_CameraSourceThrowsIOException() throws Exception {
+//        // Setup
+//        when(mainActivityUnderTest.cameraSource.start()).thenThrow(IOException.class);
+//        // Run the test
+//        mainActivityUnderTest.createCameraSource();
+//        // Verify the results
+//    }
 
 //    @Test
 //    public void testShowStatus() {
